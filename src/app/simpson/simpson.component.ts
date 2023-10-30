@@ -6,24 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./simpson.component.css'],
 })
 export class SimpsonComponent {
-  simpson(
-    x0: number,
-    x1: number,
-    num_seg: number,
-    error: number,
-    f: (x: number) => number
-  ): number {
+  simpson(x0: number, x1: number, num_seg: number, error: number, f: (x: number) => number): number {
     let integral = 0;
     let integralPrev = 0;
 
     do {
       integralPrev = integral;
-      let h = (x1 - x0) / num_seg;
+      const h = (x1 - x0) / num_seg;
       let sum = f(x0) + f(x1);
 
       for (let i = 1; i < num_seg; i++) {
         const x = x0 + i * h;
-        sum += i % 2 === 0 ? 2 * f(x) : 4 * f(x);
+        sum += (i % 2 === 0 ? 2 : 4) * f(x);
       }
 
       integral = (h / 3) * sum;
