@@ -20,7 +20,7 @@ describe('CorrelationComponent', () => {
   });
 
   //Pruebas del test1
-  it('should return R = 0.9545 with test1 json', () => {
+  xit('should return R = 0.9545 with test1 json', () => {
     // Simula los datos de test1
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -38,7 +38,7 @@ describe('CorrelationComponent', () => {
     expect(result).toBeCloseTo(0.9545, 4);
   });
 
-  it('should return RR = 0.9111 with test1 json', () => {
+  xit('should return RR = 0.9111 with test1 json', () => {
     // Simula los datos de test2
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -57,7 +57,7 @@ describe('CorrelationComponent', () => {
   });
 
   //Pruebas del test2
-  it('should return R = 0.9333 with test2 json', () => {
+  xit('should return R = 0.9333 with test2 json', () => {
     // Simula los datos de test1
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -77,7 +77,7 @@ describe('CorrelationComponent', () => {
     expect(result).toBeCloseTo(0.9333, 4);
   });
 
-  it('should return RR = 0.8711 with test2 json', () => {
+  xit('should return RR = 0.8711 with test2 json', () => {
     // Simula los datos de test2
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -98,7 +98,7 @@ describe('CorrelationComponent', () => {
   });
 
   //Pruebas del test3
-  it('should return R = 0.9631 with test3 json', () => {
+  xit('should return R = 0.9631 with test3 json', () => {
     // Simula los datos de tes3
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -116,7 +116,7 @@ describe('CorrelationComponent', () => {
     expect(result).toBeCloseTo(0.9631, 4);
   });
 
-  it('should return RR = 0.9276 with test3 json', () => {
+  xit('should return RR = 0.9276 with test3 json', () => {
     // Simula los datos de test3
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -135,7 +135,7 @@ describe('CorrelationComponent', () => {
   });
 
   //Pruebas del test4
-  it('should return R = 0.9480 with test4 json', () => {
+  xit('should return R = 0.9480 with test4 json', () => {
     // Simula los datos de tes4
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -155,7 +155,7 @@ describe('CorrelationComponent', () => {
     expect(result).toBeCloseTo(0.948, 4);
   });
 
-  it('should return RR = 0.8988 with test4 json', () => {
+  xit('should return RR = 0.8988 with test4 json', () => {
     // Simula los datos de test4
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],

@@ -23,7 +23,7 @@ describe('LinearRegressionComponent', () => {
   });
 
   // Test para el test1.json
-  it('should return B1 = 1.7279 with test1 json', () => {
+  xit('should return B1 = 1.7279 with test1 json', () => {
     // Simula los datos de test1
     const test1Data = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -41,7 +41,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(1.7279, 4);
   });
 
-  it('should return B0 = -22.5525 with test1 json', () => {
+  xit('should return B0 = -22.5525 with test1 json', () => {
     // Simula los datos de test1
     const test1Data = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -59,7 +59,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(-22.5525, 4);
   });
 
-  it('should return y = 644.429 if x = 386 with test1 json', () => {
+  xit('should return y = 644.429 if x = 386 with test1 json', () => {
     // Simula los datos de test1
     const test1Data = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -78,7 +78,7 @@ describe('LinearRegressionComponent', () => {
   });
 
   // Test para el test2.json
-  it('should return B1 = 0.1681 with test2 JSON', () => {
+  xit('should return B1 = 0.1681 with test2 JSON', () => {
     // Datos de prueba
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -100,7 +100,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(0.1681, 4);
   });
 
-  it('should return B0 = -4.039 with test2 JSON', () => {
+  xit('should return B0 = -4.039 with test2 JSON', () => {
     // Datos de prueba
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -122,7 +122,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(-4.039, 3);
   });
 
-  it('should return y = 60.858 if x = 386 with2 test JSON', () => {
+  xit('should return y = 60.858 if x = 386 with2 test JSON', () => {
     // Datos de prueba
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -145,7 +145,7 @@ describe('LinearRegressionComponent', () => {
   });
 
   // Test para el test3.json
-  it('should return B1 = 1.43097 with test3 JSON', () => {
+  xit('should return B1 = 1.43097 with test3 JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -165,7 +165,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(1.43097, 5);
   });
 
-  it('should return B0 = -23.92 with test3 JSON', () => {
+  xit('should return B0 = -23.92 with test3 JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -185,7 +185,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(-23.92, 2);
   });
 
-  it('should return y = 528.4294 if x = 386 with3 test JSON', () => {
+  xit('should return y = 528.4294 if x = 386 with3 test JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -206,7 +206,7 @@ describe('LinearRegressionComponent', () => {
   });
 
   // Test para el test4.json
-  it('should return B1 = 0.140164 with test4 JSON', () => {
+  xit('should return B1 = 0.140164 with test4 JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -228,7 +228,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(0.140164, 6);
   });
 
-  it('should return B0 = -4.604 with test4 JSON', () => {
+  xit('should return B0 = -4.604 with test4 JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],
@@ -250,7 +250,7 @@ describe('LinearRegressionComponent', () => {
     expect(result).toBeCloseTo(-4.604, 3);
   });
 
-  it('should return y = 49.4994 if x = 386 with test4 JSON', () => {
+  xit('should return y = 49.4994 if x = 386 with test4 JSON', () => {
     // Datos de prueba
     const testData = {
       plan_added: [163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130],

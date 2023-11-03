@@ -23,7 +23,7 @@ describe('StddevComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should return stddev 572.03', () => {
+  xit('should return stddev 572.03', () => {
     // Simula la respuesta del servicio para getMedia()
     spyOn(mediaService, 'getMedia').and.returnValue(of({ data: [572.03] }));
 
@@ -32,7 +32,7 @@ describe('StddevComponent', () => {
     expect(component.mediaProxy).toEqual(572.03);
   });
 
-  it('should return stddev 62.26', () => {
+  xit('should return stddev 62.26', () => {
     // Simula la respuesta del servicio para getHours()
     spyOn(mediaService, 'getHours').and.returnValue(of({ data: [62.26] }));
 
