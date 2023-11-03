@@ -8,6 +8,7 @@ import { StddevComponent } from './stddev/stddev.component';
 import { LinearRegressionComponent } from './linear-regression/linear-regression.component';
 import { CorrelationComponent } from './correlation/correlation.component';
 import { SimpsonComponent } from './simpson/simpson.component';
+import { TDistributionComponent } from './t-distribution/t-distribution.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SimpsonComponent } from './simpson/simpson.component';
     StddevComponent,
     LinearRegressionComponent,
     CorrelationComponent,
-    SimpsonComponent
+    SimpsonComponent,
+    TDistributionComponent
   ],
   imports: [
     BrowserModule,
