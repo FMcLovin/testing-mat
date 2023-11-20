@@ -9,6 +9,8 @@ import { LinearRegressionComponent } from './linear-regression/linear-regression
 import { CorrelationComponent } from './correlation/correlation.component';
 import { SimpsonComponent } from './simpson/simpson.component';
 import { TDistributionComponent } from './t-distribution/t-distribution.component';
+import { MenuComponent } from './menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { TDistributionComponent } from './t-distribution/t-distribution.componen
     LinearRegressionComponent,
     CorrelationComponent,
     SimpsonComponent,
-    TDistributionComponent
+    TDistributionComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
