@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { LinearRegression } from '../linear-regression/linear-regression';
 import { LinearRegressionService } from '../service/linear-regression.service';
+import { Correlation } from '../correlation/correlation';
 import { Calculate } from '../common/calculate';
 
 @Component({
-  selector: 'app-linear-regression',
-  templateUrl: './linear-regression.component.html',
-  styleUrls: ['./linear-regression.component.css']
+  selector: 'app-challange-three-a',
+  templateUrl: './challange-three-a.component.html',
+  styleUrls: ['./challange-three-a.component.css']
 })
-export class LinearRegressionComponent implements OnInit {
-  constructor(private linearRegressionService: LinearRegressionService) { }
+export class ChallangeThreeAComponent implements OnInit {
+  constructor(private linearRegressionService: LinearRegressionService) {}
+
+  calculate = new Calculate();
+  linearRegression = new LinearRegression();
+  correlation = new Correlation();
 
   lista1: number[] = [];
   lista2: number[] = [];
-  selectedRouteNumber: number = 1; // Establecer en ruta 1 por defecto
 
   sumX = 0;
   sumY = 0;
@@ -22,52 +27,55 @@ export class LinearRegressionComponent implements OnInit {
   sumXX = 0;
   sumYY = 0;
   n = 0;
+  x = 386;
 
-  calculate = new Calculate();
+  b0 = 0;
+  b1 = 0;
+  y = 0;
+
+  r = 0;
+  rr = 0;
+
 
   ngOnInit(): void {
-    this.fetchDataForRoute(this.selectedRouteNumber);
+    this.fetchDataForRoute(1);
   }
 
-  // Función para obtener datos basados en el número de ruta seleccionado
   fetchDataForRoute(routeNumber: number): void {
     switch (routeNumber) {
       case 1:
         this.linearRegressionService.getTest1().subscribe((data) => {
+          console.log(data, "DATA")
           this.lista1 = data.proxy_size;
           this.lista2 = data.actual_added;
-          this.handleDataResponse(data);
         });
         break;
       case 2:
         this.linearRegressionService.getTest2().subscribe((data) => {
           this.lista1 = data.proxy_size;
           this.lista2 = data.actual_develop;
-          this.handleDataResponse(data);
         });
         break;
       case 3:
         this.linearRegressionService.getTest3().subscribe((data) => {
           this.lista1 = data.plan_added;
           this.lista2 = data.actual_added;
-          this.handleDataResponse(data);
         });
         break;
       case 4:
         this.linearRegressionService.getTest4().subscribe((data) => {
           this.lista1 = data.plan_added;
           this.lista2 = data.actual_develop;
-          this.handleDataResponse(data);
         });
         break;
       default:
         console.error('Número de ruta no válido');
     }
+
+    this.handleDataResponse();
   }
 
-  // Función para manejar la respuesta de los datos
-  handleDataResponse(data: any): void {
-    console.log(data);
+  handleDataResponse(): void {
 
     this.sumX = this.calculate.sumX(this.lista1);
     this.sumY = this.calculate.sumX(this.lista2);
@@ -80,40 +88,19 @@ export class LinearRegressionComponent implements OnInit {
     this.n = this.lista1.length;
   }
 
-  // Función para actualizar datos basados en un número de ruta seleccionado
   updateData(routeNumber: number): void {
     this.fetchDataForRoute(routeNumber);
   }
 
-  //Función para calcular B1
-  calculateB1(): number {
-    var b1 = 0;
-    
-    b1 = this.calculate.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
+  calculateValues(): void {
+    this.b1 = this.linearRegression.calculateB1(this.sumXY, this.sumX, this.sumY, this.sumXX, this.n);
 
-    console.log(b1);
+    this.b0 = this.linearRegression.calculateB0(this.sumX, this.sumY, this.b1, this.n);
 
-    return b1;
-  }
+    this.y = this.linearRegression.calculateY(this.b0, this.b1, this.x);
 
-  //Función para cualcular B0
-  calculateB0(): number {
-    var b0 = 0;
+    this.r = this.correlation.calculateR(this.lista1, this.lista2);
+    this.rr = this.correlation.calculateRR(this.lista1, this.lista2);
 
-    b0 = this.calculate.calculateB0(this.sumX, this.sumY, this.calculateB1(), this.n);
-
-    console.log(b0);
-
-    return b0;
-  }
-
-  calculateY(x: number): number {
-    var y = 0;
-
-    y = this.calculate.calculateY(this.calculateB0(), this.calculateB1(), x);
-
-    console.log(y);
-
-    return y;
   }
 }
