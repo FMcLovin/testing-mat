@@ -36,12 +36,20 @@ export class ChallangeOneAComponent implements OnInit {
 
   calculate(): void {
     
-    this.mediaProxy = media(this.proxy);
-    this.mediaHours = media(this.devHours);
+    this.mediaProxy = this.getMedia(this.proxy);
+    this.mediaHours = this.getMedia(this.devHours);
 
-    this.stddevProxy = stddev(this.proxy, this.mediaProxy);
-    this.stddevHours = stddev(this.devHours, this.mediaHours);
+    this.stddevProxy = this.getStddev(this.proxy, this.mediaProxy);
+    this.stddevHours = this.getStddev(this.devHours, this.mediaHours);
 
     console.log(this.mediaProxy, this.mediaHours)
+  }
+
+  getMedia(numbers: number[]): number {
+    return media(numbers);
+  }
+
+  getStddev(numbers: number[], mean: number): number {
+    return stddev(numbers, mean);
   }
 }

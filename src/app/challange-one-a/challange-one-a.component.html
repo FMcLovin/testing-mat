@@ -17,8 +17,8 @@
       </p>
 
       <p>Datos:</p>
-      <p>proxy_size: {{ proxy }}</p>
-      <p>dev_hours: {{ devHours }}</p>
+      <p>proxy_size: <strong data-test="proxy_size">{{ proxy }}</strong></p>
+      <p>dev_hours: <strong data-test="dev_hours">{{ devHours }}</strong></p>
 
       <p class="mt-5 h5">Media</p>
       <p class="fw-bold">Proxy: {{ mediaProxy }}</p>
@@ -29,7 +29,7 @@
       <p class="fw-bold">Hours: {{ stddevHours }}</p>
 
       <div class="d-grid gap-2">
-        <button type="button" class="btn btn-light" (click)="calculate()">Calcular</button>
+        <button data-test="calculate_btn" type="button" class="btn btn-light" (click)="calculate()">Calcular</button>
       </div>
       
     </div>
