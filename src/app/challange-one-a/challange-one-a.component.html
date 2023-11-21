@@ -1,0 +1,37 @@
+<div class="d-flex w-100 h-100 align-items-center">
+  <div class="bg-white w-50 h-100 p-5 d-flex align-items-center">
+    <div class="text-center w-100">
+      <h3>Challange 1a</h3>
+      <h1>Media y desviación estándar</h1>
+      <p class="text-body-secondary">
+        Calcule la media y la desviación estándar para completar el "Challange
+        1a"
+      </p>
+    </div>
+  </div>
+  <div class="bg-gradient w-50 h-100 p-5 d-flex align-items-center text-white">
+    <div class="text-center w-100">
+      <p>
+        Presione el botón para calcular la media y la desviación estándar usando
+        los siguientes datos:
+      </p>
+
+      <p>Datos:</p>
+      <p>proxy_size: {{ proxy }}</p>
+      <p>dev_hours: {{ devHours }}</p>
+
+      <p class="mt-5 h5">Media</p>
+      <p class="fw-bold">Proxy: {{ mediaProxy }}</p>
+      <p class="fw-bold">Hours: {{ mediaHours }}</p>
+
+      <p class="mt-2 h5">Desviación estándar</p>
+      <p class="fw-bold">Proxy: {{ stddevProxy }}</p>
+      <p class="fw-bold">Hours: {{ stddevHours }}</p>
+
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-light" (click)="calculate()">Calcular</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

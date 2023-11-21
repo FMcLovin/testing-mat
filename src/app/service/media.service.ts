@@ -36,40 +36,6 @@ export class MediaService {
       catchError(this.handleError))
   }
 
-  // MARK: 
-
-  getMediaProxy(proxy: number[]): number {
-    var media = 0;
-    var mediaProxy = 0;
-
-    for (let index = 0; index < proxy.length; index++) {
-      media += proxy[index];
-    }
-
-    mediaProxy = media / proxy.length;
-
-    console.log('media component:', mediaProxy);
-
-    return mediaProxy;
-  }
-
-  getMediaHours(devHours: number[]): number {
-    var media = 0;
-    var mediaHours = 0;
-
-    console.log('media component:', devHours);
-
-    for (let index = 0; index < devHours.length; index++) {
-      media += devHours[index];
-    }
-
-    mediaHours = media / devHours.length;
-
-    console.log('media component:', mediaHours);
-
-    return mediaHours;
-  }
-
   handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent){
