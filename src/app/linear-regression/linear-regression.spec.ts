@@ -1,59 +1,61 @@
 import { TestBed } from '@angular/core/testing';
-import { LinearRegressionComponent } from './linear-regression.component';
+import { LinearRegression } from './linear-regression';
 import { LinearRegressionService } from '../service/linear-regression.service';
+import { Calculate } from '../common/calculate';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 
-describe('LinearRegressionComponent', () => {
-  let component: LinearRegressionComponent;
+describe('LinearRegression', () => {
   let service: LinearRegressionService;
+  let linearRegression: LinearRegression = new LinearRegression();
+  let calculate: Calculate = new Calculate();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LinearRegressionComponent],
       providers: [LinearRegressionService],
       imports: [HttpClientModule],
     });
 
-    // Crea una instancia del componente y del servicio antes de cada prueba
-    component = TestBed.createComponent(
-      LinearRegressionComponent
-    ).componentInstance;
     service = TestBed.inject(LinearRegressionService);
   });
 
   // Test para el test1.json
-  xit('should return B1 = 1.7279 with test1 json', () => {
+  it('should return B1 = 1.7279 with test1 json', () => {
     // Simula los datos de test1
     const test1Data = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    spyOn(service, 'getTest1').and.returnValue(of(test1Data)); // Simula la llamada a getTest1
+    const lista1 = test1Data.proxy_size;
+    const lista2 = test1Data.actual_added;
 
-    component.fetchDataForRoute(1); // Llama al método para obtener los datos
+    const sumX = calculate.sumX(lista1);
+    const sumY = calculate.sumX(lista2);
+    //const mediaX = calculate.calculateMedia(lista1);
+    //const mediaY = calculate.calculateMedia(lista2);
+
+    const sumXY = calculate.sumXY(lista1, lista2);
+    const sumXX = calculate.sumXX(lista1);
+    //const sumYY = calculate.sumXX(lista2);
+    const n = lista1.length;
 
     // Llama a la función calculateB1
-    const result = component.calculateB1();
+    const result = linearRegression.calculateB1(sumXY, sumX, sumY, sumXX, n);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(1.7279, 4);
   });
 
-  xit('should return B0 = -22.5525 with test1 json', () => {
+  /*xit('should return B0 = -22.5525 with test1 json', () => {
     // Simula los datos de test1
     const test1Data = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    spyOn(service, 'getTest1').and.returnValue(of(test1Data)); // Simula la llamada a getTest1
-
-    component.fetchDataForRoute(1); // Llama al método para obtener los datos
-
     // Llama a la función calculateB0
-    const result = component.calculateB0();
+    const result = linearRegression.calculateB0();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(-22.5525, 4);
@@ -66,12 +68,8 @@ describe('LinearRegressionComponent', () => {
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    spyOn(service, 'getTest1').and.returnValue(of(test1Data)); // Simula la llamada a getTest1
-
-    component.fetchDataForRoute(1); // Llama al método para obtener los datos
-
     // Llama a la función calculateY
-    const result = component.calculateY(386);
+    const result = linearRegression.calculateY(386);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(644.429, 3);
@@ -87,14 +85,8 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest2').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(2);
-
     // Llama a la función calculateB1
-    const result = component.calculateB1();
+    const result = linearRegression.calculateB1();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(0.1681, 4);
@@ -109,14 +101,8 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest2').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(2);
-
     // Llama a la función calculateB0
-    const result = component.calculateB0();
+    const result = linearRegression.calculateB0();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(-4.039, 3);
@@ -131,14 +117,8 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest2').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(2);
-
     // Llama a la función calculateY con un valor de X
-    const result = component.calculateY(386);
+    const result = linearRegression.calculateY(386);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(60.858, 3);
@@ -152,14 +132,8 @@ describe('LinearRegressionComponent', () => {
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest3').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(3);
-
     // Llama a la función calculateB1
-    const result = component.calculateB1();
+    const result = linearRegression.calculateB1();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(1.43097, 5);
@@ -172,14 +146,8 @@ describe('LinearRegressionComponent', () => {
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest3').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(3);
-
     // Llama a la función calculateB0
-    const result = component.calculateB0();
+    const result = linearRegression.calculateB0();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(-23.92, 2);
@@ -192,14 +160,8 @@ describe('LinearRegressionComponent', () => {
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest3').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(3);
-
     // Llama a la función calculateY con un valor de X
-    const result = component.calculateY(386);
+    const result = linearRegression.calculateY(386);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(528.4294, 4);
@@ -215,14 +177,7 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest4').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(4);
-
-    // Llama a la función calculateB1
-    const result = component.calculateB1();
+    const result = linearRegression.calculateB1();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(0.140164, 6);
@@ -237,14 +192,8 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest4').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(4);
-
     // Llama a la función calculateB0
-    const result = component.calculateB0();
+    const result = linearRegression.calculateB0();
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(-4.604, 3);
@@ -259,16 +208,10 @@ describe('LinearRegressionComponent', () => {
       ],
     };
 
-    // Simula la llamada al servicio o la respuesta de datos
-    spyOn(service, 'getTest4').and.returnValue(of(testData));
-
-    // Llama al método para obtener los datos
-    component.updateData(4);
-
     // Llama a la función calculateY con un valor de X
-    const result = component.calculateY(386);
+    const result = linearRegression.calculateY(386);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(49.4994, 4);
-  });
+  });*/
 });

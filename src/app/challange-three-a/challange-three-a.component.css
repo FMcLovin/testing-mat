@@ -1,0 +1,7 @@
+.h-100{
+    min-height: 100vh !important;
+}
+
+.bg-gradient {
+    background-image: linear-gradient(to right, #2860b1, #5966cc, #8c68e0, #c264ed, #f859f0) !important;
+}

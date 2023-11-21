@@ -1,21 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { CorrelationComponent } from './correlation.component';
+import { Correlation } from './correlation';
 import { LinearRegressionService } from '../service/linear-regression.service';
 import { of } from 'rxjs';
 
-describe('CorrelationComponent', () => {
-  let component: CorrelationComponent;
+describe('Correlation', () => {
   let service: LinearRegressionService;
+  let correlation: Correlation = new Correlation();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CorrelationComponent],
       providers: [LinearRegressionService],
       imports: [HttpClientModule],
     });
 
-    component = TestBed.createComponent(CorrelationComponent).componentInstance;
     service = TestBed.inject(LinearRegressionService);
   });
 
@@ -27,18 +25,17 @@ describe('CorrelationComponent', () => {
       actual_added: [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601],
     };
 
-    spyOn(service, 'getTest1').and.returnValue(of(testData)); // Simula la llamada a getTest1
-
-    component.fetchDataForRoute(1); // Llama al método para obtener los datos
+    const lista1 = testData.proxy_size;
+    const lista2 = testData.actual_added;
 
     // Llama a la función calculateR
-    const result = component.calculateR();
+    const result = correlation.calculateR(lista1, lista2);
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(0.9545, 4);
   });
 
-  xit('should return RR = 0.9111 with test1 json', () => {
+  /*xit('should return RR = 0.9111 with test1 json', () => {
     // Simula los datos de test2
     const testData = {
       proxy_size: [130, 650, 99, 150, 128, 302, 95, 945, 368, 961],
@@ -173,5 +170,5 @@ describe('CorrelationComponent', () => {
 
     // Comprueba que el resultado sea igual al valor esperado con una tolerancia
     expect(result).toBeCloseTo(0.8988, 4);
-  });
+  });*/
 });

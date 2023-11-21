@@ -1,0 +1,41 @@
+<div class="d-flex w-100 h-100 align-items-center">
+    <div class="bg-white w-50 h-100 p-5 d-flex align-items-center">
+      <div class="text-center w-100">
+        <h3>Challange 3a</h3>
+        <h1>Regresión linear y correlación</h1>
+        <p class="text-body-secondary">
+          Calcule la regresión linear y la correlación para completar el "Challange
+          3a"
+        </p>
+      </div>
+    </div>
+    <div class="bg-gradient w-50 h-100 p-5 d-flex align-items-center text-white">
+      <div class="text-center w-100">
+        <p>
+          Presione el botón para calcular la regresión linear y la correlación usando
+          los siguientes datos:
+        </p>
+  
+        <p>proxy_size: <strong data-test="proxy_size">{{ lista1 }}</strong></p>
+        <p>actual_added: <strong data-test="actual_added">{{ lista2 }}</strong></p>
+        <p>x: <strong data-test="x">{{ x }}</strong></p>
+  
+        <p class="mt-3 h5">Regresión linear 
+          B0: <strong data-test="b0">{{ b0 }}</strong>
+          B1: <strong data-test="b1">{{ b1 }}</strong>
+          Y: <strong data-test="y">{{ y }}</strong>
+        </p>
+      
+        <p class="mt-3 h5">Correlación 
+          R: <strong data-test="r">{{ r }}</strong>
+          RR: <strong data-test="rr">{{ rr }}</strong>
+        </p>
+  
+        <div class="d-grid gap-2">
+          <button data-test="calculate_btn" type="button" class="btn btn-light" (click)="calculateValues()">Calcular</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
