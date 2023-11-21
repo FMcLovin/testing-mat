@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ChallangeThreeAComponent } from './challange-three-a.component';
 import { By } from '@angular/platform-browser';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('ChallangeThreeAComponent', () => {
   let component: ChallangeThreeAComponent;
@@ -21,28 +22,67 @@ describe('ChallangeThreeAComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set proxy data in data-test="proxy_size" and actual added in data-test="actual_added" list', () => {
-    component.lista1 = [
-      130, 650, 99, 150, 128, 302, 95, 945, 368, 961
-    ];
+  it('should create fetchDataForRoute', fakeAsync(() => {
+    spyOn(component, 'fetchDataForRoute');
+    fixture.detectChanges();
+    setTimeout(() => {
+      component.fetchDataForRoute();
+      fixture.detectChanges();
+      expect(component.fetchDataForRoute).toHaveBeenCalled();
+    }, 1000);
 
-    component.lista2 = [
-      186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601
-    ];
+    tick(1000);
+  }));
+
+  it('should call fetchDataForRoute with default', fakeAsync(() => {
+    spyOn(component, 'fetchDataForRoute');
+    fixture.detectChanges();
+    setTimeout(() => {
+      component.fetchDataForRoute();
+      fixture.detectChanges();
+      expect(component.fetchDataForRoute).toHaveBeenCalled();
+    }, 1000);
+
+    tick(1000);
+  }));
+
+  it('should create updateData', fakeAsync(() => {
+    spyOn(component, 'updateData');
+    fixture.detectChanges();
+    setTimeout(() => {
+      component.updateData();
+      fixture.detectChanges();
+      expect(component.updateData).toHaveBeenCalledWith();
+    }, 1000);
+
+    tick(1000);
+  }));
+
+  it('should set proxy data in data-test="proxy_size" and actual added in data-test="actual_added" list', () => {
+    component.lista1 = [130, 650, 99, 150, 128, 302, 95, 945, 368, 961];
+
+    component.lista2 = [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601];
 
     fixture.detectChanges();
 
-    const proxySizeElement = fixture.debugElement.query(By.css('[data-test="proxy_size"]'));
-    const actualAddedElement = fixture.debugElement.query(By.css('[data-test="actual_added"]'));
+    const proxySizeElement = fixture.debugElement.query(
+      By.css('[data-test="proxy_size"]')
+    );
+    const actualAddedElement = fixture.debugElement.query(
+      By.css('[data-test="actual_added"]')
+    );
 
     expect(proxySizeElement).toBeTruthy();
     expect(actualAddedElement).toBeTruthy();
 
     const proxySizeContent = proxySizeElement.nativeElement.textContent.trim();
-    const actualAddedContent = actualAddedElement.nativeElement.textContent.trim();
+    const actualAddedContent =
+      actualAddedElement.nativeElement.textContent.trim();
 
     expect(proxySizeContent).toBe('130,650,99,150,128,302,95,945,368,961');
-    expect(actualAddedContent).toBe('186,699,132,272,291,331,199,1890,788,1601');
+    expect(actualAddedContent).toBe(
+      '186,699,132,272,291,331,199,1890,788,1601'
+    );
   });
 
   it('should set x value in data-test="x"', () => {
@@ -58,17 +98,14 @@ describe('ChallangeThreeAComponent', () => {
   });
 
   it('should set answers in front on button click', () => {
+    component.lista1 = [130, 650, 99, 150, 128, 302, 95, 945, 368, 961];
 
-    component.lista1 = [
-      130, 650, 99, 150, 128, 302, 95, 945, 368, 961
-    ];
-
-    component.lista2 = [
-      186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601
-    ];
+    component.lista2 = [186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601];
 
     component.handleDataResponse();
-    let additionButton = fixture.debugElement.query(By.css('[data-test="calculate_btn"]'));
+    let additionButton = fixture.debugElement.query(
+      By.css('[data-test="calculate_btn"]')
+    );
     // Act
     additionButton.triggerEventHandler('click', null);
 

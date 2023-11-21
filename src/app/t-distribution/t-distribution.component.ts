@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Calculate } from '../common/calculate';
 
 @Component({
@@ -6,8 +6,19 @@ import { Calculate } from '../common/calculate';
   templateUrl: './t-distribution.component.html',
   styleUrls: ['./t-distribution.component.css'],
 })
-export class TDistributionComponent {
+export class TDistributionComponent implements OnInit {
   calculate = new Calculate();
+
+  tStudent: number = 0;
+
+  x0: number = 0;
+  x1: number = 0;
+  degreesOfFreedom: number = 0;
+  numSegments: number = 0;
+  error: number = 0;
+
+  ngOnInit() {
+  }
 
   tDistribution(
     x0: number,
@@ -18,5 +29,9 @@ export class TDistributionComponent {
   ): number {
     const calculateTS = (x: number) => this.calculate.getTS(x, degreesOfFreedom);
     return this.calculate.simpson(x0, x1, numSegments, error, calculateTS);
+  }
+
+  calculateValues(): void {
+    this.tStudent = this.tDistribution(this.x0, this.x1, this.degreesOfFreedom, this.numSegments, this.error);
   }
 }

@@ -17,7 +17,7 @@ describe('ChallangeOneAComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should call ngOnInit', () => {
     expect(component).toBeTruthy();
   });
 

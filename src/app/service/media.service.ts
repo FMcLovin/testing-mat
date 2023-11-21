@@ -24,19 +24,18 @@ export class MediaService {
 
   getMedia(): Observable<any> {
     return this.http.get<any>(this.apiURL + this.proxyURL, this.httpOptions)
-    .pipe(
+    .pipe(retry());
+    /*.pipe(
       retry(),
-      catchError(this.handleError))
+      catchError(this.handleError))*/
   }
 
   getHours(): Observable<any> {
     return this.http.get<any>(this.apiURL + this.hoursURL, this.httpOptions)
-    .pipe(
-      retry(),
-      catchError(this.handleError))
+    .pipe(retry());
   }
 
-  handleError(error: any) {
+  /*handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent){
       // Get client side error
@@ -48,5 +47,5 @@ export class MediaService {
 
     window.alert(errorMessage);
     return throwError(errorMessage);
-  }
+  }*/
 }

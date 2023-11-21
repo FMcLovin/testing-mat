@@ -25,10 +25,11 @@ export class LinearRegressionService {
   getTest1(): Observable<any> {
     return this.http
       .get<any>(this.mainURL + this.test1, this.httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1));
+      //.pipe(retry(1), catchError(this.handleError));
   }
 
-  getTest2(): Observable<any> {
+  /*getTest2(): Observable<any> {
     return this.http
       .get<any>(this.mainURL + this.test2, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
@@ -44,9 +45,9 @@ export class LinearRegressionService {
     return this.http
       .get<any>(this.mainURL + this.test4, this.httpOptions)
       .pipe(retry(1), catchError(this.handleError));
-  }
+  }*/
 
-  handleError(error: any) {
+  /*handleError(error: any) {
     let errorMessage = '';
 
     if (error.error instanceof ErrorEvent) {
@@ -57,5 +58,5 @@ export class LinearRegressionService {
 
     window.alert(errorMessage);
     return throwError(errorMessage);
-  }
+  }*/
 }
