@@ -179,7 +179,19 @@ export class Calculate {
    * @return {[number]} The result of the gamma function
    */
   gamma(z: number): number {
-    if (z < 0.5) {
+    z -= 1;
+
+      var x = this.C[0];
+
+      var i = 1;
+      while (i < this.C.length) {
+        x += this.C[i] / (z + i);
+        i++;
+      }
+
+      var t = z + this.g + 0.5;
+      return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+    /*if (z < 0.5) {
       return Math.PI / (Math.sin(Math.PI * z) * this.gamma(1 - z));
     } else {
       z -= 1;
@@ -194,6 +206,6 @@ export class Calculate {
 
       var t = z + this.g + 0.5;
       return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
-    }
+    }*/
   }
 }

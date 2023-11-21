@@ -1,1 +1,53 @@
-<p>t-distribution works!</p>
+<div class="d-flex w-100 h-100 align-items-center">
+    <div class="bg-white w-50 h-100 p-5 d-flex align-items-center">
+      <div class="text-center w-100">
+        <h3>Challange 5a</h3>
+        <h1>T-Student</h1>
+        <p class="text-body-secondary">
+          Calcule la T-Student completar el "Challange
+          5a"
+        </p>
+      </div>
+    </div>
+    <div class="bg-gradient w-50 h-100 p-5 d-flex align-items-center text-white">
+      <div class="text-center w-100">
+        <p>
+          Presione el botón para calcular la T-Student usando
+          los siguientes datos:
+        </p>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Límite inferior</span>
+            <input type="number" name="x0" [(ngModel)]="x0" class="form-control" placeholder="0" aria-label="x0" aria-describedby="basic-addon1">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Límite superior</span>
+            <input type="number" name="x1" [(ngModel)]="x1" class="form-control" placeholder="x1" aria-label="0" aria-describedby="basic-addon2">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">Grados de libertad</span>
+            <input type="number" name="degreesOfFreedom" [(ngModel)]="degreesOfFreedom" class="form-control" placeholder="0" aria-label="degreesOfFreedom" aria-describedby="basic-addon3">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon4">Número de segmentos</span>
+            <input type="number" name="numSegments" [(ngModel)]="numSegments" class="form-control" placeholder="0" aria-label="numSegments" aria-describedby="basic-addon4">
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5">Error</span>
+            <input type="number" name="error" [(ngModel)]="error" class="form-control" placeholder="0" aria-label="error" aria-describedby="basic-addon5">
+          </div>
+      
+        <p class="mt-3 h5">T-Student: <strong data-test="t_student">{{ tStudent }}</strong></p>
+  
+        <div class="d-grid gap-2">
+          <button data-test="calculate_btn" type="button" class="btn btn-light" (click)="calculateValues()">Calcular</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

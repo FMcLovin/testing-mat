@@ -18,4 +18,9 @@ describe('MenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should use navigate function', () => {
+    component.navigateTo('')
+    expect(component.active).toBe('');
+  });
 });

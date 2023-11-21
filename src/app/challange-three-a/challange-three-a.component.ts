@@ -38,11 +38,16 @@ export class ChallangeThreeAComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetchDataForRoute(1);
+    this.fetchDataForRoute();
   }
 
-  fetchDataForRoute(routeNumber: number): void {
-    switch (routeNumber) {
+  fetchDataForRoute(): void {
+    this.linearRegressionService.getTest1().subscribe((data) => {
+      console.log(data, "DATA")
+      this.lista1 = data.proxy_size;
+      this.lista2 = data.actual_added;
+    });
+    /*switch (routeNumber) {
       case 1:
         this.linearRegressionService.getTest1().subscribe((data) => {
           console.log(data, "DATA")
@@ -69,8 +74,13 @@ export class ChallangeThreeAComponent implements OnInit {
         });
         break;
       default:
-        console.error('Número de ruta no válido');
-    }
+        this.linearRegressionService.getTest1().subscribe((data) => {
+          console.log(data, "DATA")
+          this.lista1 = data.proxy_size;
+          this.lista2 = data.actual_added;
+        });
+        break;
+    }*/
 
     this.handleDataResponse();
   }
@@ -88,8 +98,8 @@ export class ChallangeThreeAComponent implements OnInit {
     this.n = this.lista1.length;
   }
 
-  updateData(routeNumber: number): void {
-    this.fetchDataForRoute(routeNumber);
+  updateData(): void {
+    this.fetchDataForRoute();
   }
 
   calculateValues(): void {
