@@ -8,7 +8,7 @@ import { LinearRegressionComponent } from '../linear-regression/linear-regressio
   templateUrl: './correlation.component.html',
   styleUrls: ['./correlation.component.css'],
 })
-export class CorrelationComponent {
+export class CorrelationComponent implements OnInit {
   constructor(private linearRegressionService: LinearRegressionService) {}
 
   lista1: number[] = [];
